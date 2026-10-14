@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Native Americans – Tradition & Change</title>
+  <style>
+    /* ── Reset & base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #f7efe2;
+      --bg-alt:     #eedfc8;
+      --card:       #fdf6ec;
+      --border:     #c9a87a;
+      --text:       #2e1a0e;
+      --text-light: #6b4226;
+      --accent:     #8b3a0f;
+      --accent2:    #c97b2e;
+      --a-color:    #5a2d0c;
+      /* group colors */
+      --ga:  #b94a28;   /* terra cotta  – Group A */
+      --gb:  #1d6e8f;   /* turquoise    – Group B */
+      --gc:  #3a7d44;   /* sage green   – Group C */
+      --all: #7a5c1e;   /* ochre        – All groups */
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    a { color: var(--a-color); }
+
+    /* ── Sidebar nav ── */
+    #sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      width: 240px;
+      flex-shrink: 0;
+      background: var(--bg-alt);
+      border-right: 2px solid var(--border);
+      padding: 1.5rem 1rem;
+    }
+
+    #sidebar h2 {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--text-light);
+      margin-bottom: 1rem;
+    }
+
+    #sidebar ul { list-style: none; }
+    #sidebar ul li { margin-bottom: .35rem; }
+
+    #sidebar ul li a {
+      display: block;
+      padding: .35rem .6rem;
+      border-radius: 6px;
+      font-size: .85rem;
+      text-decoration: none;
+      color: var(--text);
+      transition: background .2s;
+      line-height: 1.3;
+    }
+    #sidebar ul li a:hover { background: var(--border); color: #fff; }
+
+    /* group legend in sidebar */
+    .legend {
+      margin-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+    }
+    .legend h3 { font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; color: var(--text-light); margin-bottom: .6rem; }
+    .legend-item { display: flex; align-items: center; gap: .5rem; font-size: .8rem; margin-bottom: .4rem; }
+    .legend-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+
+    /* ── Main content ── */
+    main {
+      flex: 1;
+      padding: 2rem 2.5rem 4rem;
+      max-width: 860px;
+    }
+
+    header {
+      margin-bottom: 3rem;
+      border-bottom: 3px solid var(--accent2);
+      padding-bottom: 1.5rem;
+    }
+    header .kicker {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--text-light);
+      margin-bottom: .4rem;
+    }
+    header h1 {
+      font-size: 2rem;
+      color: var(--accent);
+      line-height: 1.25;
+    }
+    header p.intro {
+      margin-top: .8rem;
+      font-size: .95rem;
+      color: var(--text-light);
+      line-height: 1.6;
+      max-width: 620px;
+    }
+
+    /* ── How-to-use box ── */
+    .how-to {
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-left: 5px solid var(--accent2);
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 2.5rem;
+      font-size: .88rem;
+      line-height: 1.6;
+    }
+    .how-to strong { color: var(--accent); }
+    .how-to ul { margin-top: .5rem; padding-left: 1.2rem; }
+
+    /* ── Chapter sections ── */
+    .chapter {
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 1.6rem 1.8rem 1.4rem;
+      margin-bottom: 2.2rem;
+      scroll-margin-top: 1.5rem;
+    }
+
+    .chapter-head {
+      display: flex;
+      align-items: flex-start;
+      gap: .8rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .chapter-num {
+      font-size: .72rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--text-light);
+      margin-top: .15rem;
+      white-space: nowrap;
+    }
+
+    .chapter h2 {
+      font-size: 1.2rem;
+      color: var(--accent);
+      line-height: 1.3;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      margin-top: .5rem;
+    }
+    .badge {
+      display: inline-block;
+      padding: .2rem .65rem;
+      border-radius: 999px;
+      font-size: .72rem;
+      font-weight: bold;
+      letter-spacing: .05em;
+      color: #fff;
+      text-transform: uppercase;
+    }
+    .badge-a   { background: var(--ga); }
+    .badge-b   { background: var(--gb); }
+    .badge-c   { background: var(--gc); }
+    .badge-all { background: var(--all); }
+
+    .chapter p {
+      font-size: .97rem;
+      line-height: 1.75;
+      margin-bottom: .85rem;
+    }
+    .chapter p:last-of-type { margin-bottom: 0; }
+
+    /* ── Focus questions ── */
+    .focus-box {
+      background: var(--bg-alt);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      padding: .8rem 1rem;
+      margin: 1rem 0;
+      font-size: .88rem;
+      line-height: 1.6;
+    }
+    .focus-box strong { color: var(--accent); display: block; margin-bottom: .3rem; font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; }
+    .focus-box ol, .focus-box ul { padding-left: 1.2rem; }
+
+    /* ── Glossary ── */
+    details.glossary {
+      margin-top: 1.2rem;
+      border-top: 1px dashed var(--border);
+      padding-top: .8rem;
+    }
+    details.glossary summary {
+      cursor: pointer;
+      font-size: .82rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--text-light);
+      user-select: none;
+      list-style: none;
+    }
+    details.glossary summary::before { content: "▸ "; }
+    details.glossary[open] summary::before { content: "▾ "; }
+
+    .gloss-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: .7rem;
+      font-size: .83rem;
+    }
+    .gloss-table tr { border-bottom: 1px solid #e0cdb5; }
+    .gloss-table tr:last-child { border-bottom: none; }
+    .gloss-table td { padding: .35rem .4rem; vertical-align: top; line-height: 1.5; }
+    .gloss-table td:first-child { font-weight: bold; color: var(--accent); white-space: nowrap; padding-right: .8rem; width: 38%; }
+
+    /* ── Responsive ── */
+    @media (max-width: 720px) {
+      body { flex-direction: column; }
+      #sidebar { position: static; width: 100%; height: auto; border-right: none; border-bottom: 2px solid var(--border); }
+      main { padding: 1.2rem 1rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════ SIDEBAR -->
+<nav id="sidebar">
+  <h2>Chapters</h2>
+  <ul>
+    <li><a href="#ch0">0 · The Greatest Untold Story</a></li>
+    <li><a href="#ch1">1 · Educating a Non-Native Audience</a></li>
+    <li><a href="#ch2">2 · Historical Trauma</a></li>
+    <li><a href="#ch3">3 · Family Life &amp; the Tribe</a></li>
+    <li><a href="#ch4">4 · Revitalization of Culture</a></li>
+    <li><a href="#ch5">5 · Tribal Land &amp; Property Rights</a></li>
+    <li><a href="#ch6">6 · Languages on the Verge of Silence</a></li>
+    <li><a href="#ch7">7 · Impact of Colonization</a></li>
+    <li><a href="#ch8">8 · Looking Forward with Hope</a></li>
+  </ul>
+
+  <div class="legend">
+    <h3>Expert Groups</h3>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--ga)"></div>Group A – History</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--gb)"></div>Group B – Life Today</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--gc)"></div>Group C – Hopeful Future</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--all)"></div>All Groups</div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════ MAIN -->
+<main>
+
+  <header>
+    <p class="kicker">Group Puzzle · Native Americans</p>
+    <h1>Native Americans:<br>Between Tradition and Change</h1>
+    <p class="intro">A collection of short readings for your expert group. Read your assigned chapters carefully, take notes, and be ready to share what you have learned with your classmates.</p>
+  </header>
+
+  <!-- How to use -->
+  <div class="how-to">
+    <strong>How does this puzzle work?</strong>
+    <ul>
+      <li><span style="color:var(--ga);font-weight:bold;">Group A (History)</span> – read chapters 0, 3, 7</li>
+      <li><span style="color:var(--gb);font-weight:bold;">Group B (Life Today)</span> – read chapters 1, 2, 5</li>
+      <li><span style="color:var(--gc);font-weight:bold;">Group C (Hopeful Future)</span> – read chapters 4, 2, 8</li>
+    </ul>
+    Each chapter ends with a glossary — click to open it. After reading, you will teach the other groups what you have learned.
+  </div>
+
+  <!-- ─── CHAPTER 0 ─────────────────────────────────────────────── -->
+  <section class="chapter" id="ch0">
+    <div class="chapter-head">
+      <div>
+        <div class="chapter-num">Chapter 0 · History</div>
+        <h2>The Greatest Untold Story of Our Time</h2>
+        <div class="badges"><span class="badge badge-a">Group A</span></div>
+      </div>
+    </div>
+
+    <p>Before Christopher Columbus set foot in the Americas in 1492, the continents were home to hundreds of millions of people. Scholars estimate that between 50 and 100 million <em>indigenous</em> people lived in North, Central, and South America — more than the entire population of Europe at that time. They spoke over 2,000 different languages and had built complex cities, trade networks, and democratic systems of government that would later influence the founders of the United States.</p>
+
+    <p>Yet most school textbooks around the world devote only a few pages to these civilisations. The story of Native Americans — their achievements, their suffering, and their survival — is rarely told in full. This is why many scholars call it "the greatest untold story of our time." Within 150 years of European contact, up to 90 percent of the Indigenous population had died from disease, warfare, and forced displacement. Entire languages, traditions, and knowledge systems vanished almost overnight.</p>
+
+    <p>Understanding this history is not just about the past. Its consequences — poverty, land loss, and cultural erasure — shape the lives of the roughly 9.7 million Native Americans living in the United States today. To understand the present, we must first reckon honestly with what was lost and why it has so long been ignored.</p>
+
+    <div class="focus-box">
+      <strong>Your focus question (Group A)</strong>
+      <ol>
+        <li>Why can the history of Native Americans be called <em>"the greatest untold story of our time"</em>? Use at least two pieces of evidence from the text.</li>
+      </ol>
+    </div>
+
+    <details class="glossary">
+      <summary>Glossary</summary>
+      <table class="gloss-table">
+        <tr><td>indigenous</td><td>born in or belonging naturally to a particular place; native to a region</td></tr>
+        <tr><td>trade network</td><td>a system of routes and contacts through which goods are exchanged between groups</td></tr>
+        <tr><td>displacement</td><td>being forced to leave one's home or land</td></tr>
+        <tr><td>cultural erasure</td><td>the destruction or suppression of a group's language, customs, and identity</td></tr>
+        <tr><td>reckon with</td><td>to deal with something honestly; to face a difficult truth</td></tr>
+      </table>
+    </details>
+  </section>
+
+  <!-- ─── CHAPTER 1 ─────────────────────────────────────────────── -->
+  <section class="chapter" id="ch1">
+    <div class="chapter-head">
+      <div>
+        <div class="chapter-num">Chapter 1</div>
+        <h2>Educating a Non-Native Audience on Native Americans Today</h2>
+        <div class="badges"><span class="badge badge-b">Group B</span></div>
+      </div>
+    </div>
+
+    <p>Many people outside — and even inside — the United States hold deeply <em>inaccurate</em> images of Native Americans. Films, sports mascots, and Halloween costumes have created a cartoon version of indigenous people: feathered, silent, and stuck in the past. This <em>stereotype</em> is not only wrong — it is harmful.</p>
+
+    <p>Today, Native Americans are doctors, artists, engineers, activists, and teachers. They live in cities and on reservations, in Alaska and in Florida. They are a living, diverse population of nearly 10 million people, yet they remain largely invisible in mainstream media. When Native voices are missing from public conversations, policy decisions are made without their input — affecting everything from healthcare to land rights.</p>
+
+    <p>Education is the most powerful tool for change. When non-native students, politicians, and citizens learn about the real history and contemporary reality of Native Americans, they become better equipped to challenge discrimination and support indigenous rights. Museums, community programmes, and school curricula that include accurate Native perspectives help to break down prejudice. Listening to Native voices directly — through books, films, and podcasts made by indigenous people themselves — is an essential first step toward genuine understanding and respect.</p>
+
+    <div class="focus-box">
+      <strong>Your focus question (Group B)</strong>
+      <ol>
+        <li>Why is it important to educate non-native audiences about Native Americans? Name at least two reasons from the text.</li>
+      </ol>
+    </div>
+
+    <details class="glossary">
+      <summary>Glossary</summary>
+      <table class="gloss-table">
+        <tr><td>inaccurate</td><td>not correct; containing mistakes</td></tr>
+        <tr><td>stereotype</td><td>an oversimplified, often unfair, fixed idea about a group of people</td></tr>
+        <tr><td>reservation</td><td>an area of land set aside by the US government for Native American tribes to live on</td></tr>
+        <tr><td>mainstream media</td><td>television, newspapers, and websites that reach the largest audiences</td></tr>
+        <tr><td>indigenous</td><td>native to a region; belonging to the first peoples of a land</td></tr>
+        <tr><td>discrimination</td><td>treating people unfairly because of their identity (race, gender, etc.)</td></tr>
+      </table>
+    </details>
+  </section>
+
+  <!-- ─── CHAPTER 2 ─────────────────────────────────────────────── -->
+  <section class="chapter" id="ch2">
+    <div class="chapter-head">
+      <div>
+        <div class="chapter-num">Chapter 2</div>
+        <h2>Understanding Historical Trauma for Native American Families</h2>
+        <div class="badges">
+          <span class="badge badge-b">Group B</span>
+          <span class="badge badge-c">Group C</span>
+        </div>
+      </div>
+    </div>
+
+    <p><em>Historical trauma</em> refers to the deep emotional and psychological wounds that are passed down through generations as a result of large-scale tragedies. For Native Americans, centuries of colonisation, forced removals, and the brutal <em>boarding school</em> system created wounds that did not simply heal when those events ended. Children who experienced or witnessed trauma grew into parents who unknowingly passed on patterns of pain.</p>
+
+    <p>Researchers have described a cycle that tends to repeat itself in affected communities: unhealed grief leads to <strong>low self-esteem</strong>, which can lead to <strong>self-medication</strong> through alcohol or drugs, which in turn causes <strong>violence</strong> or neglect within families, and these behaviours become <strong>normalised</strong> — accepted as ordinary life — so the <strong>cycle continues</strong> into the next generation. Understanding this cycle is crucial: it is not a sign of weakness or deficiency in Native culture, but a predictable response to extreme, sustained suffering.</p>
+
+    <p>One important tool for healing is <em>storytelling</em>. When elders share traditional stories with young people, they pass on identity, values, and a sense of belonging that counters feelings of worthlessness. Storytelling reconnects communities to a time before the trauma began — a time of strength, wisdom, and dignity.</p>
+
+    <div class="focus-box">
+      <strong>Your focus questions (Groups B &amp; C)</strong>
+      <ol>
+        <li>Describe the "historical trauma cycle" in your own words. What triggers it, and why is it so hard to break?</li>
+        <li>Why is storytelling an important tool for healing this trauma?</li>
+      </ol>
+    </div>
+
+    <details class="glossary">
+      <summary>Glossary</summary>
+      <table class="gloss-table">
+        <tr><td>historical trauma</td><td>psychological damage passed down across generations from collective suffering</td></tr>
+        <tr><td>boarding school</td><td>a school where children live away from home; Native children were often forced to attend in order to destroy their culture</td></tr>
+        <tr><td>self-medication</td><td>using alcohol or drugs on one's own to cope with emotional pain</td></tr>
+        <tr><td>normalised</td><td>made to seem normal or acceptable, even when it is harmful</td></tr>
+        <tr><td>sustained</td><td>continuing for a long time without stopping</td></tr>
+        <tr><td>elder</td><td>an older, respected member of a community; a keeper of traditional knowledge</td></tr>
+      </table>
+    </details>
+  </section>
+
+  <!-- ─── CHAPTER 3 ─────────────────────────────────────────────── -->
+  <section class="chapter" id="ch3">
+    <div class="chapter-head">
+      <div>
+        <div class="chapter-num">Chapter 3</div>
+        <h2>Native American Family Life, Community, and the Importance of the Tribe</h2>
+        <div class="badges"><span class="badge badge-a">Group A</span></div>
+      </div>
+    </div>
+
+    <p>In most Native American cultures, family is not limited to parents and children. The <em>extended family</em> — grandparents, aunts, uncles, and cousins — plays a central role in raising children and supporting adults through difficult times. Elders are treated with profound respect because they carry the community's history and traditional knowledge. This web of relationships provides a social safety net that binds the community together.</p>
+
+    <p>The tribe — or nation — functions as a larger family. Tribal membership gives individuals a clear sense of identity: who they are, where they come from, and what values they hold. Ceremonies, festivals, and communal work strengthen these bonds across generations. Many Native groups make decisions through consensus — all voices are heard before a choice is made — a practice that reflects deep respect for every community member.</p>
+
+    <p>Colonial policies deliberately targeted these family structures. Children were removed to boarding schools, traditional ceremonies were banned, and tribal governance was undermined. The survival of strong family and community ties despite these attacks is one of the most remarkable stories of <em>resilience</em> in human history. Understanding the centrality of family and tribe helps explain why protecting tribal sovereignty and cultural continuity matters so profoundly to Native peoples.</p>
+
+    <div class="focus-box">
+      <strong>Your focus question (Group A)</strong>
+      <ol>
+        <li>Why is the concept of "family" and "tribe" so central to Native American life? What happens when these bonds are threatened?</li>
+      </ol>
+    </div>
+
+    <details class="glossary">
+      <summary>Glossary</summary>
+      <table class="gloss-table">
+        <tr><td>extended family</td><td>family members beyond parents and children, e.g. grandparents, aunts, uncles</td></tr>
+        <tr><td>consensus</td><td>a general agreement reached by all members of a group</td></tr>
+        <tr><td>tribal sovereignty</td><td>the right of a tribe to govern itself and make its own decisions</td></tr>
+        <tr><td>resilience</td><td>the ability to recover from difficulties; strength in the face of hardship</td></tr>
+        <tr><td>undermined</td><td>weakened gradually, often in a secret or indirect way</td></tr>
+      </table>
+    </details>
+  </section>
+
+  <!-- ─── CHAPTER 4 ─────────────────────────────────────────────── -->
+  <section class="chapter" id="ch4">
+    <div class="chapter-head">
+      <div>
+        <div class="chapter-num">Chapter 4</div>
+        <h2>The Revitalization of Native American Life and Culture</h2>
+        <div class="badges"><span class="badge badge-c">Group C</span></div>
+      </div>
+    </div>
+
+    <p>Across the United States and Canada, Native communities are reclaiming what was nearly taken from them. This process — known as <em>cultural revitalization</em> — takes many forms. Language <em>immersion</em> schools teach children entirely in their ancestral tongue, reversing decades of language loss. In some communities, the number of fluent speakers of languages like Cherokee, Lakota, and Diné (Navajo) is actually growing for the first time in over a century.</p>
+
+    <p>Cultural centres and museums run by Native people themselves tell indigenous history from the inside. Annual pow-wows bring thousands of people together for drumming, dance, and ceremony — events that celebrate identity and strengthen community bonds. Traditional crafts, music, and healing practices are being documented and taught to younger generations before the last elders who remember them pass on.</p>
+
+    <p>Digital technology has become an unlikely ally. Native youth are creating YouTube channels, podcasts, and social-media accounts to share their languages and stories with the world. Organisations such as the First Nations Development Institute and the American Indian College Fund support Native students financially and culturally, helping them succeed in higher education without abandoning their roots. Revitalization is not nostalgia — it is an active, creative movement building a stronger future.</p>
+
+    <div class="focus-box">
+      <strong>Your focus question (Group C)</strong>
+      <ol>
+        <li>In what specific ways does cultural revitalization take place? List at least three examples from the text.</li>
+      </ol>
+    </div>
+
+    <details class="glossary">
+      <summary>Glossary</summary>
+      <table class="gloss-table">
+        <tr><td>revitalization</td><td>the process of giving new life and energy to something that was weakening or dying</td></tr>
+        <tr><td>immersion school</td><td>a school where all teaching is done in a particular language so students learn it naturally</td></tr>
+        <tr><td>ancestral tongue</td><td>the language spoken by one's ancestors; a heritage language</td></tr>
+        <tr><td>pow-wow</td><td>a traditional Native American gathering with dancing, singing, and ceremonies</td></tr>
+        <tr><td>nostalgia</td><td>a sentimental longing for the past; here, the author argues revitalization is about the future, not just looking back</td></tr>
+        <tr><td>ally</td><td>a person, group, or thing that helps and supports another</td></tr>
+      </table>
+    </details>
+  </section>
+
+  <!-- ─── CHAPTER 5 ─────────────────────────────────────────────── -->
+  <section class="chapter" id="ch5">
+    <div class="chapter-head">
+      <div>
+        <div class="chapter-num">Chapter 5</div>
+        <h2>Tribal Land and the Struggle for Native American Property Rights</h2>
+        <div class="badges"><span class="badge badge-b">Group B</span></div>
+      </div>
+    </div>
+
+    <p>Land is not merely property to Native Americans — it is identity, spirituality, and survival. Yet since the arrival of European colonisers, indigenous peoples have lost approximately 98 percent of the land that was once theirs. Treaties — legal agreements signed between Native nations and the US government — promised tribes specific territories in exchange for peace. Once they became inconvenient, however, most of these treaties were broken.</p>
+
+    <p>Today, Native land issues remain deeply contested. Reservations are often located on land that was considered worthless at the time they were created — only for oil, minerals, or water to be discovered beneath them later. Energy companies, governments, and private developers have repeatedly sought to drill, mine, or build pipelines across tribal territories without meaningful consent. The 2016 Standing Rock protests, where thousands gathered to oppose an oil pipeline threatening the water supply of the Sioux Nation, brought these struggles into global view.</p>
+
+    <p>Legal battles over <em>treaty rights</em> continue in courts today. Many tribes face challenges to their fishing rights, hunting rights, and the right to govern activities on their own land. Limited resources make it difficult to fight long legal battles against well-funded opponents. Land, for Native Americans, is the foundation of everything — and its protection remains one of the most urgent struggles of the present day.</p>
+
+    <div class="focus-box">
+      <strong>Your focus question (Group B)</strong>
+      <ol>
+        <li>What specific problems do Native Americans face when it comes to their tribal lands? Use examples from the text.</li>
+      </ol>
+    </div>
+
+    <details class="glossary">
+      <summary>Glossary</summary>
+      <table class="gloss-table">
+        <tr><td>treaty</td><td>a formal agreement signed between nations or groups, often about land or peace</td></tr>
+        <tr><td>contested</td><td>strongly disputed; many people disagree about it</td></tr>
+        <tr><td>consent</td><td>permission or agreement freely given</td></tr>
+        <tr><td>treaty rights</td><td>specific legal rights guaranteed to tribes by historical treaties</td></tr>
+        <tr><td>sovereignty</td><td>the full right to govern oneself without outside interference</td></tr>
+      </table>
+    </details>
+  </section>
+
+  <!-- ─── CHAPTER 6 ─────────────────────────────────────────────── -->
+  <section class="chapter" id="ch6">
+    <div class="chapter-head">
+      <div>
+        <div class="chapter-num">Chapter 6</div>
+        <h2>Native American Languages: Voices on the Verge of Silence</h2>
+        <div class="badges"><span class="badge badge-all">All Groups</span></div>
+      </div>
+    </div>
+
+    <p>When a language dies, an entire way of seeing the world disappears with it. Before European colonisation, more than 300 Native American languages were spoken in what is now the United States. Today, fewer than 150 remain, and most of those are spoken by only a handful of elderly people. Experts predict that without urgent action, the majority could vanish within a generation.</p>
+
+    <p>Language loss was not accidental. The US government actively promoted policies designed to destroy Native languages. In boarding schools, children were physically punished for speaking their mother tongue — a practice intended to <em>assimilate</em> them into white American society. The shame and silence that resulted scarred communities for decades.</p>
+
+    <p>Now, recovery efforts are under way. The Māori model from New Zealand — where language nests (small immersion schools for toddlers) helped revive the Māori language — has inspired Native American communities from Hawaii to Montana. In 2006, the Myaamia tribe of Indiana partnered with Miami University to document and teach their language. In just two decades, the number of speakers has grown from near zero. Language revitalization is slow, difficult work — but it is also an act of profound <em>sovereignty</em>: reclaiming the very words your community thinks in.</p>
+
+    <div class="focus-box">
+      <strong>Reflection question (All Groups)</strong>
+      <ol>
+        <li>What does language loss mean for a community beyond simply "not speaking a language"? And what gives you hope in this chapter?</li>
+      </ol>
+    </div>
+
+    <details class="glossary">
+      <summary>Glossary</summary>
+      <table class="gloss-table">
+        <tr><td>verge</td><td>the edge or brink; "on the verge of" means very close to</td></tr>
+        <tr><td>assimilate</td><td>to absorb a group into a dominant culture, often by force, making them adopt its language and customs</td></tr>
+        <tr><td>mother tongue</td><td>the first language a person learns; their native language</td></tr>
+        <tr><td>language nest</td><td>an immersion programme for very young children to help them acquire an endangered language naturally</td></tr>
+        <tr><td>sovereignty</td><td>the power to govern and define oneself; self-determination</td></tr>
+        <tr><td>revitalize</td><td>to bring something back to life or activity</td></tr>
+      </table>
+    </details>
+  </section>
+
+  <!-- ─── CHAPTER 7 ─────────────────────────────────────────────── -->
+  <section class="chapter" id="ch7">
+    <div class="chapter-head">
+      <div>
+        <div class="chapter-num">Chapter 7</div>
+        <h2>Cultural Disruption: The Impact of Colonization on Native Americans</h2>
+        <div class="badges"><span class="badge badge-a">Group A</span></div>
+      </div>
+    </div>
+
+    <p>The word <em>colonisation</em> describes more than a political event — it describes the systematic dismantling of a people's entire world. When European powers claimed the Americas, they did not simply take land; they destroyed social structures, outlawed spiritual practices, separated children from families, and erased centuries of accumulated knowledge. The impact was catastrophic and continues to reverberate across generations.</p>
+
+    <p>Perhaps no policy illustrates this destruction more clearly than the Indian boarding school system. Between 1869 and the 1970s, more than 150,000 Native children were forcibly removed from their homes and sent to government-run or church-run schools. The stated goal was stark: "Kill the Indian, save the man." Children arrived to find their hair cut, their clothes replaced, and their languages forbidden. Those who survived often returned to their communities as strangers — unable to speak their own language or participate in their own ceremonies.</p>
+
+    <p>The consequences of this deliberate cultural disruption can be measured today in higher rates of poverty, mental illness, and substance abuse on reservations. However, understanding the cause — colonisation — also points the way toward solutions: restoring land, funding cultural programmes, and allowing tribes to govern themselves once more.</p>
+
+    <div class="focus-box">
+      <strong>Your focus question (Group A)</strong>
+      <ol>
+        <li>Describe at least two specific ways in which colonisation disrupted Native American life. What long-term consequences can still be felt today?</li>
+      </ol>
+    </div>
+
+    <details class="glossary">
+      <summary>Glossary</summary>
+      <table class="gloss-table">
+        <tr><td>dismantling</td><td>taking something apart piece by piece; destroying a system bit by bit</td></tr>
+        <tr><td>systematic</td><td>done according to a plan; organised and deliberate</td></tr>
+        <tr><td>reverberate</td><td>to continue to have effects long after the original event; to echo</td></tr>
+        <tr><td>forcibly removed</td><td>taken away using force, without choice or consent</td></tr>
+        <tr><td>stark</td><td>severe and clear; without softening; blunt</td></tr>
+        <tr><td>substance abuse</td><td>the harmful use of drugs or alcohol</td></tr>
+      </table>
+    </details>
+  </section>
+
+  <!-- ─── CHAPTER 8 ─────────────────────────────────────────────── -->
+  <section class="chapter" id="ch8">
+    <div class="chapter-head">
+      <div>
+        <div class="chapter-num">Chapter 8</div>
+        <h2>Our Future – Looking Forward with Hope</h2>
+        <div class="badges"><span class="badge badge-c">Group C</span></div>
+      </div>
+    </div>
+
+    <p>Despite centuries of loss and struggle, Native American communities are not defined by suffering alone — they are defined by extraordinary resilience and a determined vision for the future. A new generation of indigenous leaders, artists, scientists, and activists is rising, one that refuses to choose between being Native and being modern.</p>
+
+    <p>Several organisations play a vital role in supporting this journey. The <em>American Indian College Fund</em> provides scholarships and mentoring to Native students in higher education. The <em>First Nations Development Institute</em> helps tribes build economic strength on their own terms. Youth-led movements such as Rezpect Our Water — which started when teenagers from the Standing Rock Sioux reservation protested the Dakota Access Pipeline — have shown the world that Native youth are powerful advocates for their communities and for the planet.</p>
+
+    <p>Storytelling remains a cornerstone of this hope. When indigenous writers, filmmakers, and musicians share their stories, they challenge stereotypes and inspire both native and non-native audiences. Authors like Tommy Orange (Cheyenne and Arapaho) and filmmakers like Sterlin Harjo (Seminole/Muscogee) are reaching global audiences with honest, complex, and deeply human portraits of Native life. The future holds challenges — but it also holds voices, stories, and dreams that deserve to be heard.</p>
+
+    <div class="focus-box">
+      <strong>Your focus questions (Group C)</strong>
+      <ol>
+        <li>Who supports Native youth in their journey toward empowerment? Name at least two organisations or movements from the text.</li>
+        <li>Why is storytelling important for building a hopeful future?</li>
+      </ol>
+    </div>
+
+    <details class="glossary">
+      <summary>Glossary</summary>
+      <table class="gloss-table">
+        <tr><td>resilience</td><td>the ability to recover and grow stronger after hardship</td></tr>
+        <tr><td>advocate</td><td>a person who publicly supports or speaks up for a cause or group</td></tr>
+        <tr><td>cornerstone</td><td>the most important basis or foundation of something</td></tr>
+        <tr><td>stereotype</td><td>a fixed, oversimplified idea about a group of people</td></tr>
+        <tr><td>scholarship</td><td>money given to a student to help pay for their education</td></tr>
+        <tr><td>mentoring</td><td>guidance and support given by a more experienced person to a younger one</td></tr>
+      </table>
+    </details>
+  </section>
+
+</main>
+</body>
+</html>
